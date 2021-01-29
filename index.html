@@ -68,9 +68,9 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5 id="subTotal">$1,278</h5>
-                        <h5 id="tax">$0</h5>
-                        <h5 id="total">$1,278</h5>
+                        <h5 id="subTotal">$1260</h5>
+                        <h5 id="tax">$13</h5>
+                        <h5 id="total">$1273</h5>
                      </div>
                   </div>
                </div>
@@ -106,24 +106,34 @@
          document.getElementById(id + "Price").innerText = newProductPrice;
          calculatingSubTotal();
       }
+      // function calculatingSubTotal() {
+      //    // when i click the mobile increase the mobile clickon event start then the case click event doesn't start that's why the 
+      //    // the variable subTotalAmount could not find the case amount the subTotalAmount show NAN. 
+      //    const mobileAmount = getInput("mobile");
+      //    // when i click the case increase the case clickon event start then the case click event doesn't start that's why the 
+      //    // the variable subTotalAmount could not find the mobile amount the subTotalAmount show NAN.
+      //    const caseAmount = getInput("case");
+      //    const subTotalAmount = mobileAmount + caseAmount;
+      //    document.getElementById("subTotal").innerText = subTotalAmount;
+      //    const tax = subTotalAmount * .10;
+      //    document.getElementById("tax").innerText = tax;
+      //    const total = subTotalAmount + tax;
+      //    document.getElementById("total").innerText = total;
+      // }
       function calculatingSubTotal() {
-         // when i click the mobile increase the mobile clickon event start then the case click event doesn't start that's why the 
-         // the variable subTotalAmount could not find the case amount the subTotalAmount show NAN. 
-         const mobileAmount = getInput("mobile");
-         // when i click the case increase the case clickon event start then the case click event doesn't start that's why the 
-         // the variable subTotalAmount could not find the mobile amount the subTotalAmount show NAN.
-         const caseAmount = getInput("case");
-         const subTotalAmount = mobileAmount + caseAmount;
+         const mobileInputCount = getInputCount("mobile");
+         const caseInputCount = getInputCount("case");
+         const subTotalAmount = (mobileInputCount * 1200) + (caseInputCount * 60);
          document.getElementById("subTotal").innerText = subTotalAmount;
          const tax = subTotalAmount * .10;
          document.getElementById("tax").innerText = tax;
          const total = subTotalAmount + tax;
          document.getElementById("total").innerText = total;
       }
-      function getInput(id) {
-         const input = document.getElementById(id + "Price").innerText;
-         const inputAmount = parseInt(input);
-         return inputAmount;
+      function getInputCount(id) {
+         const input = document.getElementById(id + "Input");
+         const inputCount = parseInt(input.value);
+         return inputCount;
       }
    </script>
 </body>
