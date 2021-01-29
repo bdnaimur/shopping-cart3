@@ -79,12 +79,7 @@
    </section>
    <script>
       document.getElementById("caseIncrease").addEventListener("click",function(){
-         const caseInput = document.getElementById("caseInput");
-         const caseCount = parseInt(caseInput.value);
-         const newCaseCount = caseCount + 1;
-         caseInput.value = newCaseCount;
-         const newCasePrice = newCaseCount * 60;
-         document.getElementById("casePrice").innerText = "$ " + newCasePrice;
+         productInputChange();
       });
       document.getElementById("caseDecrease").addEventListener("click",function(){
          const caseInput = document.getElementById("caseInput");
@@ -97,6 +92,14 @@
          const newCasePrice = newCaseCount * 60;
          document.getElementById("casePrice").innerText = "$ " + newCasePrice;
       });
+      function productInputChange(){
+         const caseInput = document.getElementById("caseInput");
+         const caseCount = parseInt(caseInput.value);
+         const newCaseCount = caseCount + 1;
+         caseInput.value = newCaseCount;
+         const newCasePrice = newCaseCount * 60;
+         document.getElementById("casePrice").innerText = "$ " + newCasePrice;
+      }
    </script>
 </body>
 
