@@ -79,23 +79,23 @@
    </section>
    <script>
       document.getElementById("caseIncrease").addEventListener("click",function(){
-         productInputChange();
+         productInputChange(isIncrease=true);
       });
       document.getElementById("caseDecrease").addEventListener("click",function(){
+         productInputChange(isIncrease=false);
+      });
+      function productInputChange(isIncrease){
          const caseInput = document.getElementById("caseInput");
          const caseCount = parseInt(caseInput.value);
-         let newCaseCount = caseCount;
-         if(caseCount > 0){
+         let newCaseCount = 0;
+         if(isIncrease == true){
+            newCaseCount = caseCount + 1;
+         }
+         if(isIncrease == false){
+            if(caseCount > 0){
             newCaseCount = caseCount - 1;
          }
-         caseInput.value = newCaseCount;
-         const newCasePrice = newCaseCount * 60;
-         document.getElementById("casePrice").innerText = "$ " + newCasePrice;
-      });
-      function productInputChange(){
-         const caseInput = document.getElementById("caseInput");
-         const caseCount = parseInt(caseInput.value);
-         const newCaseCount = caseCount + 1;
+         }
          caseInput.value = newCaseCount;
          const newCasePrice = newCaseCount * 60;
          document.getElementById("casePrice").innerText = "$ " + newCasePrice;
