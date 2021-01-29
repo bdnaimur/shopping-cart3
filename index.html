@@ -25,9 +25,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button onclick="productInputChange(false, 'mobile')" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <button onclick="productInputChange(false, 'mobile')" class="btn btn-default"><i
+                                 class="fas fa-minus"></i></button>
                            <input id="mobileInput" type="text" class="form-control text-center" value="1">
-                           <button onclick="productInputChange(true, 'mobile')" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick="productInputChange(true, 'mobile')" class="btn btn-default"><i
+                                 class="fas fa-plus"></i></button>
                         </div>
                         <h5 id="mobilePrice">$1200</h5>
                         <img src="images/remove.png" alt="" class="remove-item">
@@ -43,9 +45,11 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button onclick="productInputChange(false, 'case')" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <button onclick="productInputChange(false, 'case')" class="btn btn-default"><i
+                                 class="fas fa-minus"></i></button>
                            <input id="caseInput" type="text" class="form-control text-center" value="1">
-                           <button onclick="productInputChange(true, 'case')" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick="productInputChange(true, 'case')" class="btn btn-default"><i
+                                 class="fas fa-plus"></i></button>
 
                         </div>
                         <h5 id="casePrice">$60</h5>
@@ -64,9 +68,9 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$1,278</h5>
-                        <h5>$0</h5>
-                        <h5>$1,278</h5>
+                        <h5 id="subTotal">$1,278</h5>
+                        <h5 id="tax">$0</h5>
+                        <h5 id="total">$1,278</h5>
                      </div>
                   </div>
                </div>
@@ -78,28 +82,48 @@
       </div>
    </section>
    <script>
-      
-      function productInputChange(isIncrease, id){
+
+      function productInputChange(isIncrease, id) {
          const productInput = document.getElementById(id + "Input");
          const productCount = parseInt(productInput.value);
          let newProductCount = 0;
-         if(isIncrease == true){
+         if (isIncrease == true) {
             newProductCount = productCount + 1;
          }
-         if(isIncrease == false){
-            if(productCount > 0){
-            newProductCount = productCount - 1;
-         }
+         if (isIncrease == false) {
+            if (productCount > 0) {
+               newProductCount = productCount - 1;
+            }
          }
          productInput.value = newProductCount;
          let newProductPrice = 0;
-         if(id == "mobile"){
+         if (id == "mobile") {
             newProductPrice = newProductCount * 1200;
          }
-         if(id == "case"){
-           newProductPrice = newProductCount * 60;
+         if (id == "case") {
+            newProductPrice = newProductCount * 60;
          }
-         document.getElementById(id + "Price").innerText = "$ " + newProductPrice;
+         document.getElementById(id + "Price").innerText = newProductPrice;
+         calculatingSubTotal();
+      }
+      function calculatingSubTotal() {
+         // when i click the mobile increase the mobile clickon event start then the case click event doesn't start that's why the 
+         // the variable subTotalAmount could not find the case amount the subTotalAmount show NAN. 
+         const mobileAmount = getInput("mobile");
+         // when i click the case increase the case clickon event start then the case click event doesn't start that's why the 
+         // the variable subTotalAmount could not find the mobile amount the subTotalAmount show NAN.
+         const caseAmount = getInput("case");
+         const subTotalAmount = mobileAmount + caseAmount;
+         document.getElementById("subTotal").innerText = subTotalAmount;
+         const tax = subTotalAmount * .10;
+         document.getElementById("tax").innerText = tax;
+         const total = subTotalAmount + tax;
+         document.getElementById("total").innerText = total;
+      }
+      function getInput(id) {
+         const input = document.getElementById(id + "Price").innerText;
+         const inputAmount = parseInt(input);
+         return inputAmount;
       }
    </script>
 </body>
